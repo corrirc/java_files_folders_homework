@@ -8,16 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
-public class Controller {
+@RequestMapping(value ="/user")
+
+public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    FolderRepository folderRepository;
-
-    @Autowired
-    FileRepository fileRepository;
 
 }
