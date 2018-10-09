@@ -1,12 +1,14 @@
 package com.example.codeclan.filesandfoldersservice.Models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "folders")
 public class Folder {
 
     @Id
@@ -17,12 +19,13 @@ public class Folder {
     @Column(name = "name")
     private String name;
 
-
-    private List<Folder> folder;
+    @JsonIgnore
+    @OneToMany(mappedBy = "folder", fetch = FetchType.LAZY)
+    private List<File> file;
 
     public Folder(String name) {
         this.name = name;
-        this.folder = new ArrayList<Folder>();
+
     }
 
     public Folder() {
@@ -37,12 +40,12 @@ public class Folder {
         this.name = name;
     }
 
-    public List<Folder> getFiles() {
-        return folder;
+    public List<File> getFiles() {
+        return file;
     }
 
     public void setFiles(List<File> files) {
-        this.folder = folder;
+        this.file = file;
     }
 }
 
